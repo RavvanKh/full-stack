@@ -1,0 +1,35 @@
+.listProduct {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: 740px;
+  padding: 10px 50px;
+  margin: 30px;
+  border-radius: 6px;
+  background: white;
+  .listProductFormatMain {
+    display: grid;
+    grid-template-columns: 1fr 3fr repeat(4, 1fr);
+    gap: 10px;
+    width: 100%;
+    place-items: center;
+    padding: 20px 0;
+    color: #454545;
+    font-size: 15px;
+    font-weight: 600;
+  }
+  .listProductFormat {
+    align-items: center;
+    font-weight: 500;
+    .listProductItem {
+      height: 80px;
+      width: 100px;
+      object-fit: contain;
+    }
+    .listProductRemoveIcon {
+      cursor: pointer;
+      margin: auto;
+    }
+  }
+}

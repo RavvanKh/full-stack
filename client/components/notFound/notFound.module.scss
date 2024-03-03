@@ -1,0 +1,55 @@
+.notFoundContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  text-align: center;
+
+  .notFoundContent {
+    max-width: 600px;
+    padding: 20px;
+    background-color: #f8f8f8;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+    h1 {
+      font-size: 80px;
+      color: #e44d26;
+      margin-bottom: 10px;
+    }
+
+    p {
+      font-size: 18px;
+      color: #333;
+      margin-bottom: 20px;
+    }
+    .notFoundFlex {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+
+      img {
+        width: 100%;
+        max-width: 250px;
+        margin-bottom: 20px;
+      }
+      div {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 158px;
+        background-color: #e44d26;
+        color: #fff;
+        height: 40px;
+        padding: 10px 20px;
+        border: none;
+        margin: 5px;
+        border-radius: 4px;
+        cursor: pointer;
+        a {
+          color: white;
+        }
+      }
+    }
+  }
+}
