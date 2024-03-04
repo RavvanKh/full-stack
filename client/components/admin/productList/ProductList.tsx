@@ -11,7 +11,17 @@ const getProducts: () => Promise<dataProductType[]> = async () => {
     const data = await res.json();
     return data;
   } catch (err) {
-    throw new Error(err.message);
+    throw new Error(err);
+  }
+};
+
+const removeProduct = async (id: string) => {
+  try {
+    await fetch(`http://localhost:4000/products/${id}`, {
+      method: "DELETE",
+    });
+  } catch (err) {
+    throw new Error(err?.message);
   }
 };
 const ProductList: FC = async () => {
@@ -30,22 +40,28 @@ const ProductList: FC = async () => {
       <div className={style.listProductAllProducts}>
         <hr />
         {products.map((product) => (
-          <div className={`${style.listProductFormatMain} ${style.listProductFormat}`} key={product?.id}>
-            <img
-              className={style.listProductItem}
-              src={product?.image}
-              alt={product?.name}
-            />
-            <p>{product?.name}</p>
-            <p>${product?.old_price}</p>
-            <p>${product?.new_price}</p>
-            <p>{product.category}</p>
-            <img
-              className={style.listProductRemoveIcon}
-              src={crossIcon.src}
-              alt="cross"
-            />
-          </div>
+          <>
+            <div
+              className={`${style.listProductFormatMain} ${style.listProductFormat}`}
+              key={product?.id}
+            >
+              <img
+                className={style.listProductItem}
+                src={product?.image}
+                alt={product?.name}
+              />
+              <p>{product?.name}</p>
+              <p>${product?.old_price}</p>
+              <p>${product?.new_price}</p>
+              <p>{product.category}</p>
+              <img
+                className={style.listProductRemoveIcon}
+                src={crossIcon.src}
+                alt="cross"
+              />
+            </div>
+            <hr />
+          </>
         ))}
       </div>
     </div>
