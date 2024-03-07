@@ -2,7 +2,6 @@ import React, { FC } from "react";
 import style from "./popular.module.scss";
 import data_product from "../../assets/data";
 import dynamic from "next/dynamic";
-import { dataProductType } from "@/types";
 
 const Item = dynamic(() => import("../item/Item"));
 
@@ -15,7 +14,7 @@ const Item = dynamic(() => import("../item/Item"));
 //   }
 //   return res.json();
 // };
-const Popular: FC = async () => {
+const Popular: FC = () => {
   // const allProducts = await getProducts();
   // console.log(allProducts);
   return (

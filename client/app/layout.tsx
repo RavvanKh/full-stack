@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import "./reset.scss";
-import dynamic from "next/dynamic";
 import ShopContextProvider from "@/context/ShopContext";
 import { ReactNode } from "react";
 

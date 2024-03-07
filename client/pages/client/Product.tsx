@@ -9,9 +9,9 @@ const DescriptionBox = dynamic(() => import('@/components/client/descriptionBox/
 const ProductDisplay = dynamic(() => import('@/components/client/productDisplay/ProductDisplay'))
 const RelatedProducts = dynamic(() => import('@/components/client/relatedProducts/RelatedProducts'))
 
-const Product: FC<{ id: string }> = ({ id = "" }) => {
+const Product: FC<{ id: number }> = ({ id }) => {
   const { all_product } = useShopContext();
-  const product = all_product.find((e) => e.id === Number(id));
+  const product = all_product.find((e) => e.id === id);
   if (!product) {
     notFound();
   }

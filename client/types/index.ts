@@ -6,12 +6,15 @@ export interface menuType {
 }
 
 export interface dataProductType {
-  id?: number | string;
   name: string;
-  image:  string;
+  image: StaticImageData;
   category?: string;
-  new_price: number | string;
-  old_price: number | string;
+  new_price: number;
+  old_price: number;
+}
+
+export interface dataResponseType extends dataProductType{
+  id: number
 }
 
 export interface defaultCardType {
@@ -19,7 +22,7 @@ export interface defaultCardType {
 }
 
 export interface contextValueType {
-  all_product: dataProductType[];
+  all_product: dataResponseType[];
   cardItems: defaultCardType;
   addToCard: (itemId: number) => void;
   removeFromCard: (itemId: number) => void;

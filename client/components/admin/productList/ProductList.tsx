@@ -1,16 +1,16 @@
 import React, { FC } from "react";
 import style from "./productList.module.scss";
-import { dataProductType } from "@/types";
+import { dataProductType, dataResponseType } from "@/types";
 import crossIcon from "@/public/assets/cross_icon.png";
 
-const getProducts: () => Promise<dataProductType[]> = async () => {
+const getProducts: () => Promise<dataResponseType[]> = async () => {
   try {
     const res = await fetch("http://localhost:4000/products", {
       next: { revalidate: 60 },
     });
     const data = await res.json();
     return data;
-  } catch (err) {
+  } catch (err : any) {
     throw new Error(err);
   }
 };
@@ -20,7 +20,7 @@ const removeProduct = async (id: string) => {
     await fetch(`http://localhost:4000/products/${id}`, {
       method: "DELETE",
     });
-  } catch (err) {
+  } catch (err : any) {
     throw new Error(err?.message);
   }
 };
@@ -47,7 +47,7 @@ const ProductList: FC = async () => {
             >
               <img
                 className={style.listProductItem}
-                src={product?.image}
+                src={product?.image.src}
                 alt={product?.name}
               />
               <p>{product?.name}</p>

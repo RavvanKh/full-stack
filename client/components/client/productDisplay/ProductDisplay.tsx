@@ -1,12 +1,12 @@
 'use client'
 import React, { FC } from "react";
 import style from "./productDisplay.module.scss";
-import { dataProductType } from "@/types";
+import {dataResponseType } from "@/types";
 import starIcon from "@/public/assets/star_icon.png";
 import starDullIcon from "@/public/assets/star_dull_icon.png";
 import { useShopContext } from "@/context/ShopContext";
 
-const ProductDisplay: FC<{ product: dataProductType }> = ({ product }) => {
+const ProductDisplay: FC<{ product: dataResponseType }> = ({ product }) => {
   const {addToCard} = useShopContext()
   return (
     <section className={style.productDisplay}>

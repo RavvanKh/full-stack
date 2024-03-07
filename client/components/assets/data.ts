@@ -3,9 +3,9 @@ import p2_img from '../../public/assets/product_2.png'
 import p3_img from '../../public/assets/product_3.png'
 import p4_img from '../../public/assets/product_4.png'
 
-import { dataProductType } from '@/types'
+import {dataResponseType } from '@/types'
 
-let data_product: dataProductType[] = [
+let data_product: dataResponseType[] = [
   {
     id:1,
     name:"Striped Flutter Sleeve Overlap Collar Peplum Hem Blouse",

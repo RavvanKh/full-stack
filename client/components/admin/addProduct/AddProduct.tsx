@@ -11,10 +11,17 @@ const AddProduct: FC = () => {
   const [name, setName] = useState<string>("");
   const [productDetails, setProductDetails] = useState<dataProductType>({
     name: "",
-    image: "",
+    image: {
+      src: "",
+      blurDataURL: "",
+      height: 0,
+      width: 0,
+      blurHeight: 0,
+      blurWidth: 0,
+    },
     category: "women",
-    new_price: "",
-    old_price: "",
+    new_price: 0,
+    old_price: 0,
   });
 
   const handleImage = (e: ChangeEvent<HTMLInputElement>) => {
@@ -50,7 +57,7 @@ const AddProduct: FC = () => {
     } else {
       const data: { image_url: string } = await res.json();
       responseData = data;
-      product.image = responseData.image_url;
+      product.image.src = responseData.image_url;
       const response = await fetch(`http://localhost:4000/products/${id()}`, {
         method: "POST",
         headers: {
@@ -71,10 +78,17 @@ const AddProduct: FC = () => {
           setIsShowing(false);
         }, 2500);
         setProductDetails({
-          image: "",
+          image: {
+            src: "",
+            height: 0,
+            blurDataURL: "",
+            blurHeight: 0,
+            blurWidth: 0,
+            width: 0,
+          },
           name: "",
-          new_price: "",
-          old_price: "",
+          new_price: 0,
+          old_price: 0,
           category: "women",
         });
       }

@@ -7,9 +7,9 @@ import p6_img from "../../public/assets/product_2.png";
 import p7_img from "../../public/assets/product_17.png";
 import p8_img from "../../public/assets/product_28.png";
 
-import { dataProductType } from "@/types";
+import { dataResponseType } from "@/types";
 
-let new_collections: dataProductType[] = [
+let new_collections: dataResponseType[] = [
   {
     id: 12,
     name: "Striped Flutter Sleeve Overlap Collar Peplum Hem Blouse",

@@ -1,11 +1,11 @@
 import dynamic from "next/dynamic";
 import React, { FC } from "react";
 
-const Product = dynamic(() => import("@/pages/Product"));
+const Product = dynamic(() => import("@/pages/client/Product"));
 const page: FC = () => {
   return (
     <>
-      <Product id="" />
+      <Product id={1} />
     </>
   );
 };

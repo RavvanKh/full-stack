@@ -3,7 +3,30 @@ import { FC, ReactNode, createContext, useContext, useState } from "react";
 import all_product from "@/components/assets/all_product";
 import { contextValueType, defaultCardType } from "@/types";
 
-const ShopContext = createContext<contextValueType | null>(null);
+const ShopContext = createContext<contextValueType>({
+  all_product: [
+    {
+      id: 1,
+      image: {
+        height: 0,
+        src: "",
+        width: 0,
+        blurDataURL: "",
+        blurHeight: 0,
+        blurWidth: 0,
+      },
+      name: "",
+      new_price: 0,
+      old_price: 0,
+      category: "",
+    }
+  ],
+  cardItems: { 1: 1 },
+  addToCard: (itemId) => {},
+  removeFromCard: (itemId) => {},
+  getTotalCardAmount: () => 2,
+  getTotalCardItems: () => 2,
+});
 
 const getDefaultCard = () => {
   let card: defaultCardType = {};

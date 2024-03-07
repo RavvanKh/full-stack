@@ -1,6 +1,5 @@
 import React from "react";
 import style from "./relatedProducts.module.scss";
-import { dataProductType } from "@/types";
 import dynamic from "next/dynamic";
 import data_product from "@/components/assets/data";
 
@@ -12,7 +11,7 @@ const RelatedProducts = () => {
       <h1>Related Products</h1>
       <hr />
       <div className={style.relatedProductsItem}>
-        {data_product.map((item: dataProductType) => (
+        {data_product.map((item) => (
           <Item
             id={item.id}
             name={item.name}
