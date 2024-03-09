@@ -12,11 +12,11 @@ const Popular = dynamic(() => import("@/components/client/popular/Popular"));
 const Shop: FC = () => {
     return (
     <section>
-      <Hero />
+      {/* <Hero /> */}
       <Popular />
-      <Offers />
-      <NewCollections />
-      <NewsLetter />
+      {/* <Offers /> */}
+      {/* <NewCollections /> */}
+      {/* <NewsLetter /> */}
     </section>
   );
 };

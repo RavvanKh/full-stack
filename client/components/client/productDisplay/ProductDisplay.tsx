@@ -12,14 +12,14 @@ const ProductDisplay: FC<{ product: dataResponseType }> = ({ product }) => {
     <section className={style.productDisplay}>
       <div className={style.productDisplayLeft}>
         <div className={style.productDisplayImgList}>
-          <img src={product.image.src} alt={product.name} />
-          <img src={product.image.src} alt={product.name} />
-          <img src={product.image.src} alt={product.name} />
-          <img src={product.image.src} alt={product.name} />
+          <img src={product.image} alt={product.name} />
+          <img src={product.image} alt={product.name} />
+          <img src={product.image} alt={product.name} />
+          <img src={product.image} alt={product.name} />
         </div>
         <div className={style.productDisplayImg}>
           <img
-            src={product.image.src}
+            src={product.image}
             alt={product.name}
             className={style.productDisplayMainImg}
           />

@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./loader.module.scss";
-const Loading = () => {
+const Loader = () => {
   return (
     <div className={styles.loadingContainer}>
       <div className={styles.loadingSpinner}></div>
@@ -9,4 +9,4 @@ const Loading = () => {
   );
 };
 
-export default Loading;
+export default Loader;

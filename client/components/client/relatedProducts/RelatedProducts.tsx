@@ -1,17 +1,20 @@
 import React from "react";
 import style from "./relatedProducts.module.scss";
 import dynamic from "next/dynamic";
-import data_product from "@/components/assets/data";
+import { dataResponseType } from "@/types";
+import { getProducts } from "@/utils/api";
 
 const Item = dynamic(() => import("../item/Item"));
 
-const RelatedProducts = () => {
+
+const RelatedProducts = async () => {
+  const products = await getProducts();
   return (
     <section className={style.relatedProducts}>
       <h1>Related Products</h1>
       <hr />
       <div className={style.relatedProductsItem}>
-        {data_product.map((item) => (
+        {products.map((item) => (
           <Item
             id={item.id}
             name={item.name}

@@ -1,7 +1,6 @@
-import dynamic from "next/dynamic";
 import React from "react";
+import Loader from "@/components/loader/Loader";
 
-const Loader = dynamic(() => import("@/components/loader/Loader"));
 const Loading = () => {
   return (
     <>

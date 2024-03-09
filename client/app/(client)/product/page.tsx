@@ -5,7 +5,7 @@ const Product = dynamic(() => import("@/pages/client/Product"));
 const page: FC = () => {
   return (
     <>
-      <Product id={1} />
+      <Product id="986f13c6-4723-40ce-93af-ac097ebf3296" />
     </>
   );
 };

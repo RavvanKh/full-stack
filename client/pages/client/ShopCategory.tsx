@@ -1,18 +1,17 @@
-"use client";
 import { FC } from "react";
 import style from "../css/shopCategory.module.scss";
-import { useShopContext } from "@/context/ShopContext";
 import dropdownIcon from "@/public/assets/dropdown_icon.png";
 import dynamic from "next/dynamic";
+import { getProducts } from "@/utils/api";
 
 const Item = dynamic(() => import("@/components/client/item/Item"));
 
-const ShopCategory: FC<{ category: string; banner: string }> = ({
+
+const ShopCategory: FC<{ category: string; banner: string }> = async ({
   category,
   banner,
 }) => {
-  const { all_product } = useShopContext();
-
+  const allProducts = await getProducts();
   return (
     <section className={style.shopCategory}>
       <img
@@ -29,7 +28,7 @@ const ShopCategory: FC<{ category: string; banner: string }> = ({
         </div>
       </div>
       <div className={style.shopCategoryProducts}>
-        {all_product.map((item) => {
+        {allProducts.map((item) => {
           if (category === item.category) {
             return (
               <Item

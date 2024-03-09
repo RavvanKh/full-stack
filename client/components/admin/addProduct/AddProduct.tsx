@@ -11,14 +11,7 @@ const AddProduct: FC = () => {
   const [name, setName] = useState<string>("");
   const [productDetails, setProductDetails] = useState<dataProductType>({
     name: "",
-    image: {
-      src: "",
-      blurDataURL: "",
-      height: 0,
-      width: 0,
-      blurHeight: 0,
-      blurWidth: 0,
-    },
+    image: "",
     category: "women",
     new_price: 0,
     old_price: 0,
@@ -57,7 +50,7 @@ const AddProduct: FC = () => {
     } else {
       const data: { image_url: string } = await res.json();
       responseData = data;
-      product.image.src = responseData.image_url;
+      product.image = responseData.image_url;
       const response = await fetch(`http://localhost:4000/products/${id()}`, {
         method: "POST",
         headers: {
@@ -67,9 +60,7 @@ const AddProduct: FC = () => {
         body: JSON.stringify(product),
       });
       if (!response.ok) {
-        const errorData = await response.json();
-        const errorMessage = errorData?.err;
-        throw new Error(errorMessage);
+        throw new Error('Failed to add');
       } else {
         const data = await response.json();
         setName(data?.name);
@@ -78,14 +69,7 @@ const AddProduct: FC = () => {
           setIsShowing(false);
         }, 2500);
         setProductDetails({
-          image: {
-            src: "",
-            height: 0,
-            blurDataURL: "",
-            blurHeight: 0,
-            blurWidth: 0,
-            width: 0,
-          },
+          image: "",
           name: "",
           new_price: 0,
           old_price: 0,

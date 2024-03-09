@@ -1,33 +1,33 @@
 "use client";
 import { FC, ReactNode, createContext, useContext, useState } from "react";
-import all_product from "@/components/assets/all_product";
 import { contextValueType, defaultCardType } from "@/types";
+import all_product from "@/components/assets/all_product";
 
 const ShopContext = createContext<contextValueType>({
   all_product: [
     {
-      id: 1,
-      image: {
-        height: 0,
-        src: "",
-        width: 0,
-        blurDataURL: "",
-        blurHeight: 0,
-        blurWidth: 0,
-      },
+      id: "1",
+      image: "",
       name: "",
       new_price: 0,
       old_price: 0,
       category: "",
-    }
+    },
   ],
-  cardItems: { 1: 1 },
+  cardItems: { "1": 1 },
   addToCard: (itemId) => {},
   removeFromCard: (itemId) => {},
   getTotalCardAmount: () => 2,
   getTotalCardItems: () => 2,
+  isLoading: false,
+  setIsLoading: () => {},
 });
 
+// const getProducts = () => {
+//   try{
+//     const res = fetch('http://localhost:4000/products')
+//   }
+// }
 const getDefaultCard = () => {
   let card: defaultCardType = {};
   for (let index: number = 0; index < all_product.length + 1; index++) {
@@ -37,12 +37,13 @@ const getDefaultCard = () => {
 };
 
 const ShopContextProvider: FC<{ children: ReactNode }> = ({ children }) => {
+  const [isLoading, setIsLoading] = useState<boolean>(false);
   const [cardItems, setCardItems] = useState<defaultCardType>(getDefaultCard());
 
-  const addToCard = (itemId: number) => {
+  const addToCard = (itemId: string) => {
     setCardItems((prev) => ({ ...prev, [itemId]: prev[itemId] + 1 }));
   };
-  const removeFromCard = (itemId: number) => {
+  const removeFromCard = (itemId: string) => {
     setCardItems((prev) => ({ ...prev, [itemId]: prev[itemId] - 1 }));
   };
 
@@ -50,9 +51,7 @@ const ShopContextProvider: FC<{ children: ReactNode }> = ({ children }) => {
     let totalAmount: number = 0;
     for (const item in cardItems) {
       if (cardItems[item] > 0) {
-        let itemInfo = all_product.find(
-          (product) => product.id === Number(item)
-        );
+        let itemInfo = all_product.find((product) => product.id === item);
         itemInfo && (totalAmount += itemInfo.new_price * cardItems[item]);
       }
     }
@@ -76,6 +75,8 @@ const ShopContextProvider: FC<{ children: ReactNode }> = ({ children }) => {
     removeFromCard,
     getTotalCardAmount,
     getTotalCardItems,
+    isLoading,
+    setIsLoading,
   };
   return (
     <ShopContext.Provider value={contextValue}>{children}</ShopContext.Provider>

@@ -7,7 +7,7 @@ const ProductList = dynamic(
 const page: FC = () => {
   return (
     <>
-      <ProductList />
+      <ProductList  />
     </>
   );
 };

@@ -1,14 +1,14 @@
 "use client";
 import React, { FC } from "react";
 import style from "./item.module.scss";
-import { dataProductType, dataResponseType } from "@/types";
+import { dataResponseType } from "@/types";
 import Link from "next/link";
 
 const Item: FC<dataResponseType> = (props) => {
   return (
     <div className={style.item}>
       <Link href={`/product/${props.id}`} onClick={() => scrollTo(0, 0)}>
-        <img src={props.image?.src} alt="item" loading="lazy" />
+        <img src={props.image} alt="item" loading="lazy" />
         <p>{props.name}</p>
         <div className={style.itemPrices}>
           <div className={style.itemPriceNew}>${props.new_price}</div>

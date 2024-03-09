@@ -26,7 +26,7 @@ const CardItems = () => {
                 className={`${style.cardItemFormat} ${style.cardItemsFormatMain}`}
               >
                 <img
-                  src={item.image.src}
+                  src={item.image}
                   alt={`${item.name}-image`}
                   className={style.cardItemProductIcon}
                 />
