@@ -1,14 +1,9 @@
 import dynamic from "next/dynamic";
-import React, { FC } from "react";
 
-const Card = dynamic(() => import("@/pages/client/Card"));
+const Card = dynamic(() => import("@/components/pages/client/Card"));
 
-const page: FC = () => {
-  return (
-    <>
-      <Card />
-    </>
-  );
+const page = () => {
+  return <Card />;
 };
 
 export default page;

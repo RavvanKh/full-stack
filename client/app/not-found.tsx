@@ -1,14 +1,9 @@
-import dynamic from 'next/dynamic'
-import React from 'react'
+import dynamic from "next/dynamic";
 
-const NotFound = dynamic(() => import('@/components/notFound/NotFound'))
+const NotFound = dynamic(() => import("@/components/notFound/NotFound"));
 
 const NotFoundPage = () => {
-  return (
-    <>
-        <NotFound/>
-    </>
-  )
-}
+  return <NotFound />;
+};
 
-export default NotFoundPage
+export default NotFoundPage;

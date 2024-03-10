@@ -1,5 +1,5 @@
 "use client";
-import React, { FC, MouseEventHandler, useEffect, useRef } from "react";
+import React, { MouseEventHandler, useEffect, useRef, useState } from "react";
 import style from "./navbar.module.scss";
 import { menuTypes } from "@/constants";
 import Link from "next/link";
@@ -8,13 +8,35 @@ import cardIcon from "@/public/assets/cart_icon.png";
 import dynamic from "next/dynamic";
 import { useShopContext } from "@/context/ShopContext";
 import { IoMdMenu } from "react-icons/io";
+import LogoutConfirmation from "./LogoutConfirmation";
+import { useRouter } from "next/navigation";
 
 const NavLink = dynamic(() => import("./NavLink"));
-const Navbar: FC = () => {
+const Navbar = () => {
   const { getTotalCardItems } = useShopContext();
+  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
   const menuRef = useRef<HTMLUListElement | null>(null);
   const divRef = useRef<HTMLDivElement | null>(null);
+  const [showConfirmation, setShowConfirmation] = useState(false);
+  const router = useRouter();
+  
+  const handleLogout = () => {
+    document.body.style.overflow = "hidden";
+    setShowConfirmation(true);
+  };
 
+  const handleConfirmLogout = () => {
+    setShowConfirmation(false);
+    setIsLoggedIn(false);
+    localStorage.removeItem("auth-token");
+    document.body.style.overflow = "auto";
+    router.push("/login");
+  };
+
+  const handleCancelLogout = () => {
+    setShowConfirmation(false);
+    document.body.style.overflow = "auto";
+  };
   const toggleDropdown: MouseEventHandler<
     HTMLDivElement | HTMLLIElement
   > = () => {
@@ -30,6 +52,7 @@ const Navbar: FC = () => {
     );
   };
   useEffect(() => {
+    setIsLoggedIn(localStorage.getItem("auth-token") ? true : false);
     const handleClick = (e: MouseEvent) => {
       const menuNode = menuRef.current;
       const divNode = divRef.current;
@@ -54,6 +77,12 @@ const Navbar: FC = () => {
   }, []);
   return (
     <nav className={style.navbar}>
+      {showConfirmation && (
+        <LogoutConfirmation
+          onConfirm={handleConfirmLogout}
+          onCancel={handleCancelLogout}
+        />
+      )}
       <div className={style.navLogo}>
         <Link href="/">
           <img src={navLogo.src} alt="nav-logo" />
@@ -69,9 +98,13 @@ const Navbar: FC = () => {
       </ul>
 
       <div className={style.navLoginCard}>
-        <Link href="/login">
-          <button>Login</button>
-        </Link>
+        {isLoggedIn ? (
+          <button onClick={handleLogout}>Logout</button>
+        ) : (
+          <Link href="/login">
+            <button>Login</button>
+          </Link>
+        )}
         <Link href="/card">
           <img src={cardIcon.src} alt="card" />
         </Link>

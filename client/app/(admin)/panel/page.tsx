@@ -1,13 +1,6 @@
-import dynamic from "next/dynamic";
-import React, { FC } from "react";
 
-
-const page: FC = () => {
-  return (
-    <>
-
-    </>
-  );
+const page = () => {
+  return <></>;
 };
 
 export default page;

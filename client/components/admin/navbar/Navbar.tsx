@@ -1,12 +1,11 @@
-import React, { FC } from "react";
 import style from "./navbar.module.scss";
 import navLogo from "@/public/assets/nav-logo.svg";
 import navProfile from "@/public/assets/nav-profile.svg";
 import Link from "next/link";
-const Navbar: FC = () => {
+const Navbar = () => {
   return (
     <nav className={style.navbar}>
-      <Link href='/panel'>
+      <Link href="/panel">
         <img className={style.navLogo} src={navLogo.src} alt="nav-logo" />
       </Link>
       <img

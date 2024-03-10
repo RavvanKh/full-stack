@@ -1,8 +1,7 @@
-import React, { FC } from "react";
 import style from "./offers.module.scss";
 import exclusiveImg from "@/public/assets/exclusive_image.png";
 
-const Offers: FC = () => {
+const Offers = () => {
   return (
     <section className={style.offers}>
       <div className={style.offersLeft}>

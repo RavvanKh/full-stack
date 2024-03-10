@@ -1,19 +1,21 @@
-import React, { FC } from "react";
 import style from "./newCollections.module.scss";
 import dynamic from "next/dynamic";
-import new_collections from "@/components/assets/new_collections";
+import { getProducts } from "@/utils/api";
 
 const Item = dynamic(() => import("../item/Item"));
-const NewCollections: FC = () => {
+
+const NewCollections = async () => {
+  const newCollections = await getProducts('type=new');
   return (
     <section className={style.newCollections}>
       <h1>New Collections</h1>
       <hr />
       <div className={style.collections}>
-        {new_collections.map((item) => (
+        {newCollections.map((item) => (
           <Item
             key={item.id}
             id={item.id}
+            category={item.category}
             name={item.name}
             image={item.image}
             new_price={item.new_price}

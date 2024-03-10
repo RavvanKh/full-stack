@@ -1,11 +1,10 @@
 import dynamic from "next/dynamic";
-import React, { FC } from "react";
 
-const Shop = dynamic(() => import("@/pages/client/Shop"));
+const Shop = dynamic(() => import("@/components/pages/client/Shop"));
 const Navbar = dynamic(() => import("@/components/client/navbar/Navbar"));
 const Footer = dynamic(() => import("@/components/client/footer/Footer"));
 
-const Home: FC = () => {
+const Home = () => {
   return (
     <main>
       <Navbar />

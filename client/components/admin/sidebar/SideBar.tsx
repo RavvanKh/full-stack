@@ -1,9 +1,9 @@
-import React, { FC } from "react";
+import React from "react";
 import style from "./sidebar.module.scss";
 import Link from "next/link";
 import addProductIcon from "@/public/assets/Product_Cart.svg";
 import listProductsIcon from "@/public/assets/Product_list_icon.svg";
-const SideBar: FC = () => {
+const SideBar = () => {
   return (
     <aside className={style.sideBar}>
       <Link href="/add-product">

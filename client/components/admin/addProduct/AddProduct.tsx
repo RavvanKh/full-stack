@@ -1,11 +1,11 @@
 "use client";
-import React, { ChangeEvent, FC, Fragment, useState } from "react";
+import React, { ChangeEvent, Fragment, useState } from "react";
 import style from "./addProduct.module.scss";
 import uploadArea from "@/public/assets/upload_area.svg";
 import { dataProductType } from "@/types";
 import { v4 as id } from "uuid";
 import { Transition } from "@headlessui/react";
-const AddProduct: FC = () => {
+const AddProduct = () => {
   const [image, setImage] = useState<Blob>();
   const [isShowing, setIsShowing] = useState<boolean>(false);
   const [name, setName] = useState<string>("");
@@ -13,8 +13,8 @@ const AddProduct: FC = () => {
     name: "",
     image: "",
     category: "women",
-    new_price: "",
-    old_price: "",
+    new_price: 0,
+    old_price: 0,
   });
 
   const handleImage = (e: ChangeEvent<HTMLInputElement>) => {
@@ -60,9 +60,7 @@ const AddProduct: FC = () => {
         body: JSON.stringify(product),
       });
       if (!response.ok) {
-        const errorData = await response.json();
-        const errorMessage = errorData?.err;
-        throw new Error(errorMessage);
+        throw new Error("Failed to add");
       } else {
         const data = await response.json();
         setName(data?.name);
@@ -73,8 +71,8 @@ const AddProduct: FC = () => {
         setProductDetails({
           image: "",
           name: "",
-          new_price: "",
-          old_price: "",
+          new_price: 0,
+          old_price: 0,
           category: "women",
         });
       }

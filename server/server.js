@@ -6,7 +6,8 @@ const jwt = require("jsonwebtoken");
 const cors = require("cors");
 
 const imageRoute = require("./routes/images.js");
-const productsRoute = require('./routes/products.js')
+const productsRoute = require("./routes/products.js");
+const authRoute = require("./routes/auth.js");
 require("dotenv").config();
 
 const port = process.env.PORT || 4000;
@@ -19,8 +20,9 @@ app.get("/", (req, res) => {
   res.send("Express App is running");
 });
 app.use("/upload", imageRoute);
-app.use('/products', productsRoute)
-app.use('/images',express.static('upload/images'))
+app.use("/products", productsRoute);
+app.use("/auth", authRoute);
+app.use("/images", express.static("upload/images"));
 //Connect DB
 mongoose
   .connect(process.env.MONGO_URI)
