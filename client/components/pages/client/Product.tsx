@@ -1,9 +1,6 @@
-// "use client";
-// import { useShopContext } from "@/context/ShopContext";
 import { getProduct } from "@/utils/api";
 import dynamic from "next/dynamic";
 import { notFound } from "next/navigation";
-import React, { FC } from "react";
 
 const BreadCrumb = dynamic(
   () => import("@/components/client/breadCrumbs/BreadCrumb")
@@ -18,9 +15,7 @@ const RelatedProducts = dynamic(
   () => import("@/components/client/relatedProducts/RelatedProducts")
 );
 
-
-
-const Product: FC<{ id: string }> = async ({ id = " " }) => {
+const Product = async ({ id = " " }: { id: string }) => {
   const product = await getProduct(id);
   if (!product) {
     notFound();
@@ -30,7 +25,7 @@ const Product: FC<{ id: string }> = async ({ id = " " }) => {
       <BreadCrumb product={product} />
       <ProductDisplay product={product} />
       <DescriptionBox />
-      <RelatedProducts />
+      <RelatedProducts type={product.category} differ={product.id} />
     </section>
   );
 };

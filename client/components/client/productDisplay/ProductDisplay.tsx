@@ -1,13 +1,12 @@
-'use client'
-import React, { FC } from "react";
+"use client";
 import style from "./productDisplay.module.scss";
-import {dataResponseType } from "@/types";
+import { dataResponseType } from "@/types";
 import starIcon from "@/public/assets/star_icon.png";
 import starDullIcon from "@/public/assets/star_dull_icon.png";
 import { useShopContext } from "@/context/ShopContext";
 
-const ProductDisplay: FC<{ product: dataResponseType }> = ({ product }) => {
-  const {addToCard} = useShopContext()
+const ProductDisplay = ({ product }: { product: dataResponseType }) => {
+  const { addToCard } = useShopContext();
   return (
     <section className={style.productDisplay}>
       <div className={style.productDisplayLeft}>
@@ -57,8 +56,12 @@ const ProductDisplay: FC<{ product: dataResponseType }> = ({ product }) => {
           </div>
         </div>
         <button onClick={() => addToCard(product.id)}>Add to Card</button>
-        <p className={style.productDisplayRightCategory}><span>Category:</span> Women, T-Shirt, Crop Top</p>
-        <p className={style.productDisplayRightCategory}><span>Tags:</span> Modern, Latest</p>
+        <p className={style.productDisplayRightCategory}>
+          <span>Category:</span> Women, T-Shirt, Crop Top
+        </p>
+        <p className={style.productDisplayRightCategory}>
+          <span>Tags:</span> Modern, Latest
+        </p>
       </div>
     </section>
   );

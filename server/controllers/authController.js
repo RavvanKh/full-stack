@@ -17,10 +17,26 @@ const signUp = async (req, res) => {
     password: hashedPassword,
     cardData: card,
   });
-  const data = { user: { id: user.id } };
+  const data = { user: { id: user?.id } };
 
   const token = jwt.sign(data, "secret_ecom");
   res.status(200).json({ token });
 };
+const login = async (req, res) => {
+  const { email, password } = req.body;
+  const user = await User.findOne({ email: email });
+  if (!user) {
+    return res.status(404).json({ err: "User is not found" });
+  }
+  const compare = await bcrytp.compare(password, user?.password);
+  if (!compare) {
+    return res
+      .status(400)
+      .json({ err: "Please use correct email or password" });
+  }
+  const data = { user: { id: user?.id } };
+  const token = jwt.sign(data,'secret_ecom');
+  res.status(200).json({ token });
+};
 
-module.exports = { signUp };
+module.exports = { signUp, login };

@@ -2,7 +2,16 @@ const { Types } = require("mongoose");
 const productModel = require("../models/productModel");
 
 const getAllProducts = async (req, res) => {
-  const products = await productModel.find();
+  const { type, differ } = req.query;
+  const oneWeekAgo = new Date(new Date().getTime() - 7 * 24 * 60 * 60 * 1000);
+  const filter = type
+    ? {
+        [type === "new" ? "date" : "category"]:
+          type === "new" ? { $gte: oneWeekAgo } : type,
+        id: { $ne: differ },
+      }
+    : {};
+  const products = await productModel.find(filter);
   res.status(200).json(products);
 };
 

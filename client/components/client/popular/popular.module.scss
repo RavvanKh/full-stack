@@ -17,7 +17,8 @@
   }
   .popularItem {
     margin-top: 50px;
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
     gap: 30px;
   }
 }
@@ -72,12 +73,12 @@
   }
 }
 
-@media (max-width:500px){
-  .popular{
+@media (max-width: 500px) {
+  .popular {
     height: 90vh;
-    .popularItem{
+    .popularItem {
       display: grid;
-      grid-template-columns: repeat(2,1fr);
+      grid-template-columns: repeat(2, 1fr);
       gap: 20px;
     }
   }

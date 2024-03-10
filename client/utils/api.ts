@@ -1,17 +1,21 @@
 import { dataResponseType } from "@/types";
 
-export const getProducts: () => Promise<dataResponseType[]> = async () => {
+export const getProducts: (
+  query?: string
+) => Promise<dataResponseType[]> = async (query) => {
   try {
-    const res = await fetch("http://localhost:4000/products", {
-      next: { revalidate: 1 },
-    });
+    const res = await fetch(
+      `http://localhost:4000/products?${query && query}`,
+      {
+        next: { revalidate: 1 },
+      }
+    );
     const data = await res.json();
     if (!res.ok) {
       throw new Error(data?.err);
     }
     return data;
   } catch (err: any) {
-    console.log(err);
     throw new Error(err?.message);
   }
 };

@@ -1,11 +1,10 @@
-import React, { FC } from "react";
 import style from "./footer.module.scss";
 import logoBig from "@/public/assets/logo_big.png";
 import instagramIcon from "@/public/assets/instagram_icon.png";
 import pinterestIcon from "@/public/assets/pinterest_icon.png";
 import whatsAppIcon from "@/public/assets/whatsapp_icon.png";
 
-const Footer: FC = () => {
+const Footer = () => {
   return (
     <footer className={style.footer}>
       <div className={style.footerLogo}>

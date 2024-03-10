@@ -1,5 +1,5 @@
 "use client";
-import React, { FC, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import style from "./productList.module.scss";
 import crossIcon from "@/public/assets/cross_icon.png";
 import { useShopContext } from "@/context/ShopContext";
@@ -7,7 +7,7 @@ import { deleteProduct } from "@/utils/api";
 import { dataResponseType } from "@/types";
 import Loader from "@/components/loader/Loader";
 
-const ProductList: FC = () => {
+const ProductList = () => {
   const { isLoading, setIsLoading } = useShopContext();
   const [products, setProducts] = useState<dataResponseType[]>([]);
 

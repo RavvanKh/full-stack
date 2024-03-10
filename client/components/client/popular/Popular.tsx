@@ -1,13 +1,11 @@
-import React, { FC } from "react";
 import style from "./popular.module.scss";
 import dynamic from "next/dynamic";
 import { getProducts } from "@/utils/api";
 
 const Item = dynamic(() => import("../item/Item"));
 
-const Popular: FC = async () => {
-  const allProducts = await getProducts();
-  console.log(allProducts);
+const Popular = async () => {
+  const allProducts = await getProducts("type=women");
   return (
     <section className={style.popular}>
       <h1>Popular in Women</h1>
@@ -17,6 +15,7 @@ const Popular: FC = async () => {
           <Item
             key={item.id}
             id={item.id}
+            category={item.category}
             name={item.name}
             image={item.image}
             new_price={item.new_price}

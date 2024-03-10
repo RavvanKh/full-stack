@@ -9,7 +9,7 @@ export interface menuType {
 export interface dataProductType {
   name: string;
   image: string;
-  category?: string;
+  category: string;
   new_price: number;
   old_price: number;
 }
@@ -23,7 +23,7 @@ export interface defaultCardType {
 }
 
 export interface contextValueType {
-  all_product: dataResponseType[];
+  products: dataResponseType[];
   cardItems: defaultCardType;
   addToCard: (itemId: string) => void;
   removeFromCard: (itemId: string) => void;
@@ -31,4 +31,10 @@ export interface contextValueType {
   getTotalCardItems: () => number;
   isLoading: boolean;
   setIsLoading: Dispatch<SetStateAction<boolean>>;
+}
+
+export interface userDataType {
+  name?: string;
+  email: string;
+  password: string;
 }

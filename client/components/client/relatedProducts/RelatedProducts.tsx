@@ -1,14 +1,18 @@
 import React from "react";
 import style from "./relatedProducts.module.scss";
 import dynamic from "next/dynamic";
-import { dataResponseType } from "@/types";
 import { getProducts } from "@/utils/api";
 
 const Item = dynamic(() => import("../item/Item"));
 
-
-const RelatedProducts = async () => {
-  const products = await getProducts();
+const RelatedProducts = async ({
+  type,
+  differ,
+}: {
+  type: string;
+  differ: string;
+}) => {
+  const products = await getProducts(`type=${type}&differ=${differ}`);
   return (
     <section className={style.relatedProducts}>
       <h1>Related Products</h1>

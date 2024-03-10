@@ -1,5 +1,4 @@
 "use client";
-import React from "react";
 import style from "./cardItems.module.scss";
 import { useShopContext } from "@/context/ShopContext";
 import removeIcon from "@/public/assets/cart_cross_icon.png";

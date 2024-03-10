@@ -1,10 +1,9 @@
-import React, { FC } from "react";
 import style from "./hero.module.scss";
 import handIcon from "@/public/assets/hand_icon.png";
 import arrow from "@/public/assets/arrow.png";
 import heroImage from "@/public/assets/hero_image.png";
 
-const Hero: FC = () => {
+const Hero = () => {
   return (
     <section className={style.hero}>
       <div className={style.heroLeft}>
