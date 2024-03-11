@@ -36,5 +36,6 @@ export interface contextValueType {
 export interface userDataType {
   name?: string;
   email: string;
+  type?: "admin" | "user";
   password: string;
 }

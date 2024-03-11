@@ -2,7 +2,6 @@ const express = require("express");
 const app = express();
 
 const mongoose = require("mongoose");
-const jwt = require("jsonwebtoken");
 const cors = require("cors");
 
 const imageRoute = require("./routes/images.js");
@@ -15,10 +14,7 @@ app.use(express.json());
 
 app.use(cors());
 
-//Create API
-app.get("/", (req, res) => {
-  res.send("Express App is running");
-});
+ 
 app.use("/upload", imageRoute);
 app.use("/products", productsRoute);
 app.use("/auth", authRoute);

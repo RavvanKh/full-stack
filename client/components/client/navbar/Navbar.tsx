@@ -10,6 +10,7 @@ import { useShopContext } from "@/context/ShopContext";
 import { IoMdMenu } from "react-icons/io";
 import LogoutConfirmation from "./LogoutConfirmation";
 import { useRouter } from "next/navigation";
+import { getCookie } from "cookies-next";
 
 const NavLink = dynamic(() => import("./NavLink"));
 const Navbar = () => {
@@ -19,16 +20,16 @@ const Navbar = () => {
   const divRef = useRef<HTMLDivElement | null>(null);
   const [showConfirmation, setShowConfirmation] = useState(false);
   const router = useRouter();
-  
+
   const handleLogout = () => {
     document.body.style.overflow = "hidden";
     setShowConfirmation(true);
   };
 
-  const handleConfirmLogout = () => {
+  const handleConfirmLogout = async () => {
+    const res = await fetch("http://localhost:4000/auth/sign-out");
     setShowConfirmation(false);
     setIsLoggedIn(false);
-    localStorage.removeItem("auth-token");
     document.body.style.overflow = "auto";
     router.push("/login");
   };
@@ -52,7 +53,7 @@ const Navbar = () => {
     );
   };
   useEffect(() => {
-    setIsLoggedIn(localStorage.getItem("auth-token") ? true : false);
+    setIsLoggedIn(!!getCookie("auth"));
     const handleClick = (e: MouseEvent) => {
       const menuNode = menuRef.current;
       const divNode = divRef.current;

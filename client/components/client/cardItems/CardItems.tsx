@@ -4,7 +4,7 @@ import { useShopContext } from "@/context/ShopContext";
 import removeIcon from "@/public/assets/cart_cross_icon.png";
 
 const CardItems = () => {
-  const { all_product, cardItems, removeFromCard, getTotalCardAmount } =
+  const { products, cardItems, removeFromCard, getTotalCardAmount } =
     useShopContext();
   return (
     <section className={style.cardItems}>
@@ -17,7 +17,7 @@ const CardItems = () => {
         <p>Remove</p>
       </div>
       <hr />
-      {all_product?.map((item) => {
+      {products?.map((item) => {
         if (cardItems?.[item?.id] > 0) {
           return (
             <div key={item.id}>

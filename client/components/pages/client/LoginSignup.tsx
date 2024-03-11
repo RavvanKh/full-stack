@@ -6,6 +6,7 @@ import { FaEye } from "react-icons/fa";
 import { FaEyeSlash } from "react-icons/fa";
 import { useRouter } from "next/navigation";
 import { Transition } from "@headlessui/react";
+import { getCookie } from "cookies-next";
 const LoginSignup = () => {
   const [type, setType] = useState<string>("Login");
   const [userData, setUserData] = useState<userDataType>({
@@ -44,8 +45,9 @@ const LoginSignup = () => {
           setErr(data?.err);
           clearErrorWithTimeout();
         } else {
-          localStorage.setItem("auth-token", data?.token);
-          router.push("/");
+          getCookie("role") === "user"
+            ? router.push("/")
+            : router.push("/panel");
         }
       } else {
         const res = await fetch("http://localhost:4000/auth/sign-up", {
@@ -61,8 +63,9 @@ const LoginSignup = () => {
           setErr(data?.err);
           clearErrorWithTimeout();
         } else {
-          localStorage.setItem("auth-token", data?.token);
-          router.push("/");
+          getCookie("role") === "admin"
+            ? router.push("/panel")
+            : router.push("/");
         }
       }
     } catch (err: any) {
@@ -90,8 +93,7 @@ const LoginSignup = () => {
         <h1>{type}</h1>
         <form className={style.loginSignupFields} onSubmit={handleSubmit}>
           {type === "Sign Up" && (
-            <div>
-              {" "}
+            <div className={style.input}>
               <input
                 type="text"
                 placeholder="Your Name"
@@ -101,8 +103,7 @@ const LoginSignup = () => {
               />
             </div>
           )}
-          <div>
-            {" "}
+          <div className={style.input}>
             <input
               type="email"
               placeholder="Email Address"
@@ -111,7 +112,7 @@ const LoginSignup = () => {
               onChange={handleChange}
             />
           </div>
-          <div>
+          <div className={style.input}>
             <input
               type={show ? "text" : "password"}
               placeholder="Password"
@@ -120,9 +121,17 @@ const LoginSignup = () => {
               onChange={handleChange}
             />
             {show ? (
-              <FaEye size={20} onClick={() => setShow(false)} />
+              <FaEye
+                size={20}
+                onClick={() => setShow(false)}
+                cursor="pointer"
+              />
             ) : (
-              <FaEyeSlash size={20} onClick={() => setShow(true)} />
+              <FaEyeSlash
+                size={20}
+                onClick={() => setShow(true)}
+                cursor="pointer"
+              />
             )}
           </div>
           <button disabled={!agree} type="submit">
